@@ -36,7 +36,8 @@ objects:
     triggers:
     - type: Change
     - type: Webhook
-    #- type: Periodic
+    - type: Periodic
+      cron: "${SCHEDULE}"
       #cron: '*/1 * * * *'
     serviceAccountRef: eunomia-runner
     templateProcessorImage: ${TEMPLATE_PROCESSOR_IMAGE}
@@ -53,3 +54,6 @@ parameters:
   value: ''
 - name: TEMPLATE_PROCESSOR_IMAGE
   value: quay.io/kohlstechnology/eunomia-applier:v0.0.1
+- name: SCHEDULE
+  description: Periodic schedule for gitops processing
+  value: "@hourly"
